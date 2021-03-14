@@ -1,0 +1,31 @@
+CREATE TABLE Drivers(
+  ID int,
+  Name nvarchar(30),
+  CONSTRAINT PK_Drivers PRIMARY KEY(ID)
+);
+CREATE TABLE Cars(
+  ID int,
+  Name nvarchar(30),
+  CONSTRAINT PK_Cars PRIMARY KEY(ID)
+);
+CREATE TABLE Garage(
+  ID int,
+  Idriver int,
+  Icar int,
+  Date date,
+  CONSTRAINT PK_Garage PRIMARY KEY(ID),
+  CONSTRAINT FK_Driver_Drivers FOREIGN KEY (Idriver) 
+	REFERENCES Drivers (ID),
+   CONSTRAINT FK_Car_Cars FOREIGN KEY (Icar) 
+	REFERENCES Cars (ID)
+);
+
+
+
+
+
+SELECT ID,Idriver, Icar, Date
+FROM Garage
+WHERE Idriver BETWEEN 0 AND 1999
+ORDER BY Idriver,
+			Date
